@@ -17,7 +17,7 @@ Angularのバージョンは、作成時の最新版である2.0.0-rc.4を使用
 node -v
 ```
 
-### プロジェクトのダウンロード  
+### プロジェクトのダウンロード
 
 GitHubからクローンする方法
 
@@ -29,10 +29,10 @@ Zipをダウンロードする方法
 
 [Zipでダウンロード](https://github.com/ng-japan/ng2-hands-on-seed/archive/master.zip)
 
-### プロジェクトのセットアップ  
+### プロジェクトのセットアップ
 
 ダウンロードしたプロジェクトのディレクトリで次のコマンドを実行します
- 
+
 ```
 cd ng2-hands-on/courses/quickstart
 npm install
@@ -101,7 +101,7 @@ Angularの魅力をもっと知るために、ユーザーの入力があって�
 
 まずは完成図を見てください。
 
-https://angular.io/resources/live-examples/tutorial/ts/plnkr.html
+https://angular.io/resources/live-examples/toh-6/ts/plnkr.html
 
 これが、Angular 2を使って、全部で200行ぐらいのTypeScriptで実装されています。
 順に実装していきましょう。
@@ -230,8 +230,8 @@ var HEROES: Hero[] = [
 
 今、`heroes`が10個の要素を持っているので、10個の`li`要素が生成されます。
 
-この中に[class.selected]="hero === selectedHero"と(click)="onSelect(hero)"という記述があります。 
-一つ目は、hero === selectedHeroがtrueのときselectedというクラスが要素に追加されるようにしています。 
+この中に[class.selected]="hero === selectedHero"と(click)="onSelect(hero)"という記述があります。
+一つ目は、hero === selectedHeroがtrueのときselectedというクラスが要素に追加されるようにしています。
 二つ目は、clickのイベント時にonSelect(hero)という処理が実行されるようにしています。
 
 次に、`selectedHero`の詳細を表示する部分に`*ngIf="selectedHero"`という記述があります。
@@ -746,7 +746,7 @@ import { Hero } from './hero';
 export class HeroDetailComponent {
     hero: Hero;
     sub: any; // rxjs.Subscription
-    
+
     constructor(
         private heroService: HeroService,
         private route: ActivatedRoute) {
