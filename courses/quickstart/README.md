@@ -62,20 +62,66 @@ export class AppComponent { }
 Angular 2の最小のコンポーネントはこれだけです。
 `template`の中身を自分の好きな文字列やHTMLにしても大丈夫ですよ。
 
-このComponentを画面に表示してみましょう。
+このComponentを画面に表示するためにAngular 2で使えるように登録していきましょう。
+Angular 2ではアプリケーションひとつひとつを`NgModule`という単位で扱います。
+この`NgModule`を作成し、そこに今作ったComponentを登録することで、その内容が表示できます。
+
+appディレクトリに`app.module.ts`というファイルを追加し、内容を次のようにします。
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+@NgModule({
+  imports: [
+    BrowserModule
+  ],
+  declarations: [],
+  bootstrap: []
+})
+export class AppModule {}
+```
+
+`declarations`に今作ったComponentを追加しましょう。
+
+まずは`import`します。
+
+```ts
+import { AppComponent } from 'app.component';
+```
+
+そして、この`AppComponent`を`declarations`の配列に追記します。
+同様に`bootstrap`にも追記します。このプロパティにはAngular 2起動時に最初に表示されるComponentを指定します。
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppComponent } from 'app.component';
+
+@NgModule({
+  imports: [
+    BrowserModule
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+最後に`NgModule`を起動させるエントリーポイントとなるファイルを作成しましょう。
 appディレクトリに`main.ts`というファイルを追加します。
 中身は以下の通りです。
 
 ```ts
-import { bootstrap }    from '@angular/platform-browser-dynamic'
-import { AppComponent } from './app.component'
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app.module';
 
-bootstrap(AppComponent);
+platformBrowserDynamic().bootstrapModule(AppModule);
 ```
 
-2行目で先ほど`app/app.component.ts`で定義した`AppComponent`を読み込んでいます。
-そして、`bootstrap`という関数に`AppComponent`を与えています。
-これで`AppComponent`を使う準備は整いました。
+2行目で先ほど`app/app.module.ts`で定義した`AppModule`を読み込んでいます。
+そして、`platformBrowserDynamic()`が提供する`bootstrapModule`という関数に`AppModule`を与えています。
+これで`AppComponent`をブラウザ上に表示する準備は整いました。
 
 ここで、`index.html`の`body`は以下のようになっています。
 
